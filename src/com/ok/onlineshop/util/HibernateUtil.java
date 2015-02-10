@@ -1,5 +1,6 @@
 package com.ok.onlineshop.util;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -29,6 +30,14 @@ public class HibernateUtil {
 
 	public static SessionFactory getSessionFactory() {
 		return HibernateUtil.sessionFactory;
+	}
+
+	public static Session openSession() {
+		return HibernateUtil.getSessionFactory().openSession();
+	}
+
+	public static Session getSession() {
+		return HibernateUtil.getSessionFactory().getCurrentSession();
 	}
 
 }
