@@ -6,12 +6,14 @@ import com.ok.onlineshop.util.HibernateUtil;
 
 public abstract class GenericDao<T> {
 
-	protected Session openSession() {
-		return HibernateUtil.openSession();	// should I be opening new sessions each time or getting current sessions?
-	}
+	/*
+	 * Transaction trans = null; try { this.trans = session.beginTransaction(); session.save(user); this.trans.commit(); }
+	 * catch (HibernateException e) { if (this.trans != null) { this.trans.rollback(); } this.e.printStackTrace(); }
+	 * finally { session.close(); } should I open and close transaction for each
+	 */
 
 	public void save(T entity) {
-		Session session = this.openSession();
+		Session session = HibernateUtil.openSession();
 		session.beginTransaction();
 		session.saveOrUpdate(entity);
 		session.getTransaction().commit();
@@ -19,12 +21,12 @@ public abstract class GenericDao<T> {
 	}
 
 	public void merge(T entity) {
-		Session session = this.openSession();
+		Session session = HibernateUtil.openSession();
 		session.merge(entity);
 	}
 
 	public void delete(T entity) {
-		Session session = this.openSession();
+		Session session = HibernateUtil.openSession();
 		session.delete(entity);
 	}
 

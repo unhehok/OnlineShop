@@ -13,6 +13,6 @@
         <property name="show_sql">true</property>
         <!-- property name="hbm2ddl.auto">va</property-->
         
-        <mapping resource="com/ok/onlineshop/domain/UserEntity.hbm.xml" />
+        <mapping resource="com/ok/onlineshop/model/User.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

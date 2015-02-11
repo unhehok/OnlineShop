@@ -6,7 +6,7 @@
     <class name="com.ok.onlineshop.model.User" table="USERS">
         <id name="userid" type="long">
             <column name="USERID" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="USERNAME" />
@@ -16,9 +16,6 @@
         </property>
         <property name="email" type="java.lang.String">
             <column name="EMAIL" />
-        </property>
-        <property name="status" type="boolean">
-            <column name="STATUS" />
         </property>
     </class>
 </hibernate-mapping>

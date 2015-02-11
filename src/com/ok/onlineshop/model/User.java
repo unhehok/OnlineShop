@@ -1,5 +1,7 @@
 package com.ok.onlineshop.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -7,11 +9,12 @@ import javax.persistence.Id;
 public class User {
 
 	@Id
-	private long		userid;
-	private String	username;
-	private String	password;
-	private String	email;
-	private boolean	status;
+	private long							userid;
+	private String						username;
+	private String						password;
+	private String						email;
+	private Date							registrationDate;
+	transient private boolean	status;
 
 	public long getUserid() {
 		return this.userid;
@@ -51,6 +54,14 @@ public class User {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public Date getRegistrationDate() {
+		return this.registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
 }
