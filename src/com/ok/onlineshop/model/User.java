@@ -1,31 +1,31 @@
 package com.ok.onlineshop.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 
+	@Id
 	private long		userid;
 	private String	username;
 	private String	password;
 	private String	email;
 	private boolean	status;
 
-	public User(String username, String password, String email) {
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.status = false;
+	public long getUserid() {
+		return this.userid;
 	}
 
-	@Override
-	public String toString() {
-		return "User [username=" + this.username + ", password=" + this.password
-				+ ", email=" + this.email + ", status=" + this.status + "]";
+	public void setUserid(long userid) {
+		this.userid = userid;
 	}
 
-	public String getusername() {
+	public String getUsername() {
 		return this.username;
 	}
 
-	public void setusername(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
@@ -45,7 +45,7 @@ public class User {
 		this.email = email;
 	}
 
-	public boolean getStatus() {
+	public boolean isStatus() {
 		return this.status;
 	}
 
@@ -53,11 +53,4 @@ public class User {
 		this.status = status;
 	}
 
-	public int getUserid() {
-		return this.userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
 }

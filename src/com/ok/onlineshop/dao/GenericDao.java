@@ -1,12 +1,10 @@
 package com.ok.onlineshop.dao;
 
-import java.io.Serializable;
-
 import org.hibernate.Session;
 
 import com.ok.onlineshop.util.HibernateUtil;
 
-public abstract class GenericDao<T, ID extends Serializable> {
+public abstract class GenericDao<T> {
 
 	protected Session openSession() {
 		return HibernateUtil.openSession();	// should I be opening new sessions each time or getting current sessions?

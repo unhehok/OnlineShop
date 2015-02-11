@@ -4,7 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.ok.onlineshop.domain.UserEntity;
+import com.ok.onlineshop.model.User;
 import com.ok.onlineshop.util.HibernateUtil;
 
 public class ClientApp {
@@ -19,7 +19,7 @@ public class ClientApp {
 
 		try {
 			trans = session.beginTransaction();
-			UserEntity user = new UserEntity();
+			User user = new User();
 			user.setUserid(1);
 			user.setUsername("test");
 			user.setPassword("test");
