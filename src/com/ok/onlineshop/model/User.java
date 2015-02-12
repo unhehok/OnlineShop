@@ -2,13 +2,8 @@ package com.ok.onlineshop.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class User {
 
-	@Id
 	private long							userid;
 	private String						username;
 	private String						password;
