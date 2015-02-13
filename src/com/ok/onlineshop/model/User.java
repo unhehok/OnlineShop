@@ -1,13 +1,33 @@
 package com.ok.onlineshop.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
+@Entity(name = "USERS")
+public class User implements Serializable {
+
+	private static final long	serialVersionUID	= 1L;
+	@Id
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
+	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "USER_SEQ",
+			allocationSize = 20)
+	@Column(name = "USERID", nullable = false)
 	private long							userid;
+	@Column(name = "USERNAME")
 	private String						username;
+	@Column(name = "PASS")
 	private String						password;
+	@Column(name = "EMAIL")
 	private String						email;
+	@Column(name = "REGISTRATION_DATE")
 	private Date							registrationDate;
 	transient private boolean	status;
 
@@ -57,6 +77,14 @@ public class User {
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userid=" + this.userid + ", username=" + this.username
+				+ ", password=" + this.password + ", email=" + this.email
+				+ ", registrationDate=" + this.registrationDate + ", status="
+				+ this.status + "]";
 	}
 
 }
