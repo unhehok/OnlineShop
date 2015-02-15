@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
@@ -12,9 +13,10 @@ import javax.persistence.SequenceGenerator;
 public class User implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
-	@Id
 	@SequenceGenerator(name = "USER_SEQ_GEN", sequenceName = "USER_SEQ",
-	initialValue = 1)
+			initialValue = 1)
+	@Id
+	@GeneratedValue(generator = "USER_SEQ_GEN")
 	@Column(name = "USERID", nullable = false)
 	private long							userid;
 	@Column(name = "USERNAME")
