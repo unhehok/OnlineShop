@@ -15,6 +15,7 @@ public class FrontController {
 	@RequestMapping("/login")
 	public ModelAndView login() {
 		ModelAndView model = new ModelAndView("login");
+		System.out.println(model);
 		model.addObject("username", "JohnDoe");
 		return model;
 	}
