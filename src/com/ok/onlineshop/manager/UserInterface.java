@@ -1,10 +1,10 @@
 package com.ok.onlineshop.manager;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import com.ok.onlineshop.model.User;
 
-@Local
+@Remote
 public interface UserInterface {
 
 	User newUser(String username, String password, String email);
