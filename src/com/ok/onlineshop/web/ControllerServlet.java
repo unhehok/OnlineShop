@@ -22,16 +22,16 @@ public class ControllerServlet extends HttpServlet {
 
 	@Override
 	protected void
-	doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			doGet(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
 		System.out.println("doGet");
 
 	}
 
 	@Override
 	protected void
-	doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			doPost(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
 		String path = request.getServletPath();
 		String newUsername = request.getParameter("newUsername");
 		String newEmail = request.getParameter("newEmail");
@@ -44,7 +44,7 @@ public class ControllerServlet extends HttpServlet {
 				out.println("newUsername: " + newUsername);
 				out.println("newEmail: " + newEmail);
 				out.println("newPassword: " + newPassword);
-				// this.userManager.newUser(newUsername, newPassword, newEmail);
+				this.userManager.newUser(newUsername, newPassword, newEmail);
 		}
 
 	}
