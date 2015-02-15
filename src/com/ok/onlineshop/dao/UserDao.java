@@ -11,11 +11,15 @@ public class UserDao extends GenericDao {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
-		// user.setUserid(100);
 		Date registration = new Date();
 		user.setRegistrationDate(registration);
 		System.out.println(user);
 		GenericDao.save(user);
+		return user;
+	}
+
+	public static User findById(long userid) {
+		User user = (User) GenericDao.findById("USERS", userid);
 		return user;
 	}
 }

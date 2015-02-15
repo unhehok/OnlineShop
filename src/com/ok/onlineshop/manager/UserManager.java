@@ -1,17 +1,20 @@
 package com.ok.onlineshop.manager;
 
-import javax.ejb.Stateless;
-
 import com.ok.onlineshop.dao.UserDao;
 import com.ok.onlineshop.model.User;
 
-@Stateless
-public class UserManager implements UserInterface {
+// @Stateless
+public class UserManager {
 
+	@Override
 	public User newUser(String username, String password, String email) {
-		User ret = new User();
-		ret = UserDao.addUser(username, password, email);
-		System.out.println(ret);
-		return ret;
+		User user = UserDao.addUser(username, password, email);
+		user.setStatus(true);
+		user.setAccountInfo(null);
+		return user;
+	}
+
+	public User login(String username, String password) {
+
 	}
 }

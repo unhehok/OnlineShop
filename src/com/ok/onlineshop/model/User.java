@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity(name = "USERS")
@@ -17,7 +18,7 @@ public class User implements Serializable {
 			initialValue = 1)
 	@Id
 	@GeneratedValue(generator = "USER_SEQ_GEN")
-	@Column(name = "USERID", nullable = false)
+	@Column(name = "USERID", unique = true, nullable = false)
 	private long							userid;
 	@Column(name = "USERNAME")
 	private String						username;
@@ -28,6 +29,8 @@ public class User implements Serializable {
 	@Column(name = "REGISTRATION_DATE")
 	private Date							registrationDate;
 	transient private boolean	status;
+	@OneToOne
+	private Account						accountInfo;
 
 	public long getUserid() {
 		return this.userid;
@@ -77,12 +80,20 @@ public class User implements Serializable {
 		this.registrationDate = registrationDate;
 	}
 
+	public Account getAccountInfo() {
+		return this.accountInfo;
+	}
+
+	public void setAccountInfo(Account accountInfo) {
+		this.accountInfo = accountInfo;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userid=" + this.userid + ", username=" + this.username
 				+ ", password=" + this.password + ", email=" + this.email
-				+ ", registrationDate=" + this.registrationDate + ", status="
-				+ this.status + "]";
+				+ ", registrationDate=" + this.registrationDate + ", accountInfo="
+				+ this.accountInfo + "]";
 	}
 
 }
