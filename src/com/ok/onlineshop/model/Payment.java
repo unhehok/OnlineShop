@@ -29,7 +29,6 @@ public class Payment implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "PAY_ACCOUNT_ID", referencedColumnName = "ACCOUNT_ID")
 	private Account						userAccount;
-
 	private Address						billing;
 
 	public long getPaymentId() {
@@ -72,12 +71,12 @@ public class Payment implements Serializable {
 		this.billing = billing;
 	}
 
-	public Account getUser() {
-		return this.user;
+	public Account getUseraccount() {
+		return this.userAccount;
 	}
 
-	public void setUser(Account user) {
-		this.user = user;
+	public void setUseraccount(Account user) {
+		this.userAccount = user;
 	}
 
 }

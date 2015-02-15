@@ -6,7 +6,7 @@ import com.ok.onlineshop.model.User;
 public class ClientApp {
 
 	public static void main(String[] args) {
-		User user = UserDao.addUser("happy", "day", "woah@hoho.com");
+		User user = UserDao.findById(1);
 		System.out.println(user);
 	}
 }
