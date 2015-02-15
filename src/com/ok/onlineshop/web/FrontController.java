@@ -7,11 +7,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FrontController {
 
-	@RequestMapping("/index.jsp")
-	public ModelAndView helloworld() {
+	/*
+	 * @RequestMapping("/index") public ModelAndView index() { ModelAndView model = new ModelAndView("index.jsp"); //
+	 * model.addObject("username", "JohnDoe"); return model; }
+	 */
 
-		ModelAndView model = new ModelAndView("HelloPage");
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		ModelAndView model = new ModelAndView("login");
 		model.addObject("username", "JohnDoe");
 		return model;
 	}
+
 }

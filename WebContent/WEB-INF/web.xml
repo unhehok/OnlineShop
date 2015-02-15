@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="WebApp_ID" version="3.1"
  xmlns="http://xmlns.jcp.org/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
  <display-name>OnlineShop</display-name>
  <session-config>
   <session-timeout>10</session-timeout>
@@ -9,13 +11,12 @@
  <servlet>
   <servlet-name>spring-dispatcher</servlet-name>
   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-</servlet>
-<servlet-mapping>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
   <servlet-name>spring-dispatcher</servlet-name>
   <url-pattern>/</url-pattern>
-</servlet-mapping>
+ </servlet-mapping>
 
- <welcome-file-list>
-  <welcome-file>index.jsp</welcome-file>
- </welcome-file-list>
+
 </web-app>
