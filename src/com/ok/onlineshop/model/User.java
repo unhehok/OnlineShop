@@ -1,16 +1,22 @@
 package com.ok.onlineshop.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-@Entity(name = "USERS")
+@Entity
+@Table(name = "USERS")
 public class User implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
@@ -19,24 +25,25 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(generator = "USER_SEQ_GEN")
 	@Column(name = "USERID", unique = true, nullable = false)
-	private long							userid;
-	@Column(name = "USERNAME")
+	private BigDecimal				userid;
+	@Column(name = "USERNAME", unique = true, nullable = false)
 	private String						username;
-	@Column(name = "PASS")
+	@Column(name = "PASS", nullable = false)
 	private String						password;
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", unique = true, nullable = false)
 	private String						email;
 	@Column(name = "REGISTRATION_DATE")
 	private Date							registrationDate;
 	transient private boolean	status;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "ACCOUNT_ID")
 	private Account						accountInfo;
 
-	public long getUserid() {
+	public BigDecimal getUserid() {
 		return this.userid;
 	}
 
-	public void setUserid(long userid) {
+	public void setUserid(BigDecimal userid) {
 		this.userid = userid;
 	}
 
@@ -92,8 +99,8 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [userid=" + this.userid + ", username=" + this.username
 				+ ", password=" + this.password + ", email=" + this.email
-				+ ", registrationDate=" + this.registrationDate + ", accountInfo="
-				+ this.accountInfo + "]";
+				+ ", registrationDate=" + this.registrationDate + ", accountId="
+				+ this.accountInfo.getAccountId().toString() + "]";
 	}
 
 }

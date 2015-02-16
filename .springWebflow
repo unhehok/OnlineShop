@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webflow-project-description>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.6.0.201407080615-RELEASE]]></pluginVersion>
+	<configs>
+		<config>
+			<file>WebContent/WEB-INF/dispatcher-servlet.xml</file>
+			<name><![CDATA[dispatcher-servlet]]></name>
+			<beans-config><![CDATA[1:BeansModel|2:OnlineShop|3:WebContent/WEB-INF/beans.xml]]></beans-config>
+		</config>
+	</configs>
+</webflow-project-description>

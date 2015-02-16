@@ -14,5 +14,10 @@
         <property name="hbm2ddl.auto">create</property>
         
         <mapping class="com.ok.onlineshop.model.User" />
+        <mapping class="com.ok.onlineshop.model.Account" />
+        <mapping class="com.ok.onlineshop.model.Address" />
+        <mapping class="com.ok.onlineshop.model.Payment" />
+        <mapping class="com.ok.onlineshop.model.Category" />
+        <mapping class="com.ok.onlineshop.model.Product" />
     </session-factory>
 </hibernate-configuration>

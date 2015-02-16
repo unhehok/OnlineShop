@@ -9,8 +9,8 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtil {
 
 	private static final SessionFactory	sessionFactory	=
-			HibernateUtil
-			.buildSessionFactory();
+																													HibernateUtil
+																															.buildSessionFactory();
 
 	private static SessionFactory buildSessionFactory() {
 		try {
@@ -36,7 +36,7 @@ public class HibernateUtil {
 		return HibernateUtil.getSessionFactory().openSession();
 	}
 
-	public static Session getSession() {
+	public static Session currentSession() {
 		return HibernateUtil.getSessionFactory().getCurrentSession();
 	}
 

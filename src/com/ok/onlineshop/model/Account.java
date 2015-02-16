@@ -1,32 +1,36 @@
 package com.ok.onlineshop.model;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Account {
+@Table(name = "ACCOUNT")
+public class Account implements Serializable {
 
+	private static final long	serialVersionUID	= 1L;
 	@Id
 	@Column(name = "ACCOUNT_ID", unique = true, nullable = false)
-	private long					accountId;
+	private BigDecimal				accountId;
 	@OneToOne(mappedBy = "accountInfo")
-	private User					user;
+	private User							user;
 	@OneToMany(mappedBy = "userAccount")
-	private List<Payment>	payMethod;
+	private List<Payment>			payMethod;
 	@OneToMany(mappedBy = "userAccount")
-	private Set<Address>	shipping;
+	private List<Address>			shipping;
 
-	public long getAccountId() {
+	public BigDecimal getAccountId() {
 		return this.accountId;
 	}
 
-	public void setAccountId(long accountId) {
+	public void setAccountId(BigDecimal accountId) {
 		this.accountId = accountId;
 	}
 
@@ -46,12 +50,19 @@ public class Account {
 		this.payMethod = payMethod;
 	}
 
-	public Set<Address> getShipping() {
+	public List<Address> getShipping() {
 		return this.shipping;
 	}
 
-	public void setShipping(Set<Address> shipping) {
+	public void setShipping(List<Address> shipping) {
 		this.shipping = shipping;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [accountId=" + this.accountId + ", username="
+				+ this.user.getUsername() + ", payMethod=" + this.payMethod.toArray()
+				+ ", shipping=" + this.shipping.toArray() + "]";
 	}
 
 }
