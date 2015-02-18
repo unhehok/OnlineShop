@@ -21,7 +21,8 @@
   	</div>
 	<button type="submit" class="btn btn-default">Submit</button>
 </form>
-<a href="forgotPass.do">Forgot Password?</a>
+<a href="forgotPass.do">Forgot Password?</a><br>
+<a href="newuser.jsp">New User</a>
 </div>
 </div>
 </body>

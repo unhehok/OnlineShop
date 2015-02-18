@@ -11,7 +11,7 @@
 </div>
 <div id="content">
     <a href="login.jsp">Login</a><br>
-    <a href="newuser.jsp">New User</a><br>
+    <a href="newuser">New User</a><br>
 </div>
 </body>
 </html>
