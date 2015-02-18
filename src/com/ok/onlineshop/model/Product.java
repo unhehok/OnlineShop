@@ -2,6 +2,7 @@ package com.ok.onlineshop.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,5 +34,5 @@ public class Product implements Serializable {
 	@Id
 	@Column(name = "DESCRIPTION ")
 	private String						description;
-	private List<Option>
+	private List<Option>			optionsAvail;
 }

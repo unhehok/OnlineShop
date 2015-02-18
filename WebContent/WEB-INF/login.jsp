@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container-fluid">
-	${username}
+	${message}
 	login.jsp
 </div>
 </body>

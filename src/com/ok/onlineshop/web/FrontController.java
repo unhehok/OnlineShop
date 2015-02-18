@@ -1,5 +1,8 @@
 package com.ok.onlineshop.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -7,16 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FrontController {
 
-	/*
-	 * @RequestMapping("/index") public ModelAndView index() { ModelAndView model = new ModelAndView("index.jsp"); //
-	 * model.addObject("username", "JohnDoe"); return model; }
-	 */
-
-	@RequestMapping("/login")
-	public ModelAndView login() {
-		ModelAndView model = new ModelAndView("login");
-		System.out.println(model);
-		model.addObject("username", "JohnDoe");
+	@RequestMapping("/login.do")
+	public ModelAndView login(HttpServletRequest request,
+			HttpServletResponse response) {
+		String message = "Hello Spring MVC World!";
+		ModelAndView model = new ModelAndView("login", "message", message);
+		// model.addObject("username", "JohnDoe");
 		return model;
 	}
 
