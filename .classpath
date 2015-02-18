@@ -11,9 +11,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate43"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/OracleDriver"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/com.ibm.ws.st.core.runtimeClasspathProvider/WebSphere Application Server V8.5 Liberty Profile"/>
-	<classpathentry kind="lib" path="C:/JavaUser/Servers/WildFly81/wildfly-8.1.0.Final/jboss-modules.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 8.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring4"/>
+	<classpathentry kind="lib" path="C:/JavaUser/LUNA/WS/OnlineShop/WebContent/WEB-INF/lib/tiles-api-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/JavaUser/LUNA/WS/OnlineShop/WebContent/WEB-INF/lib/tiles-core-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/JavaUser/LUNA/WS/OnlineShop/WebContent/WEB-INF/lib/tiles-servlet-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/JavaUser/LUNA/WS/OnlineShop/WebContent/WEB-INF/lib/tiles-template-3.0.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

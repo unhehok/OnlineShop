@@ -9,18 +9,12 @@
   <session-timeout>10</session-timeout>
  </session-config>
  <servlet>
-  <servlet-name>frontDispatcher</servlet-name>
+  <servlet-name>dispatcher</servlet-name>
   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   <load-on-startup>1</load-on-startup>
  </servlet>
  <servlet-mapping>
-  <servlet-name>frontDispatcher</servlet-name>
-  <url-pattern>*.do</url-pattern>
+  <servlet-name>dispatcher</servlet-name>
+  <url-pattern>/</url-pattern>
  </servlet-mapping>
- 
-<welcome-file-list>
- 	<welcome-file>index.jsp</welcome-file>
-</welcome-file-list>
-
-
 </web-app>

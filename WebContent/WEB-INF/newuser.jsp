@@ -10,18 +10,23 @@
 <body>
 <div class="container-fluid">
 <div  class="col-md-6 center-block">
-<form method="POST" action="login.do">
+<h2>New User Registration</h2>
+<form method="POST" action="newuser.do">
+	${errorMsg }
+	<div class="form-group">
+    	<label>Email address</label>
+    	<input type="email" class="form-control" name="newEmail" placeholder="Enter email">
+	</div>
 	<div class="form-group">
     	<label>Username</label>
-    	<input type="text" class="form-control" name="username" placeholder="Enter username">
+    	<input type="text" class="form-control" name="newUsername" placeholder="Enter username">
   	</div>
   	<div class="form-group">
     	<label for="inputPassword">Password</label>
-    	<input type="password" class="form-control" name="password" placeholder="Password">
+    	<input type="password" class="form-control" name="newPassword" placeholder="Password">
   	</div>
 	<button type="submit" class="btn btn-default">Submit</button>
 </form>
-<a href="forgotPass.do">Forgot Password?</a>
 </div>
 </div>
 </body>

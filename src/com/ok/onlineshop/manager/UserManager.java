@@ -20,6 +20,26 @@ public class UserManager {
 		return account.getUser();
 	}
 
+	public boolean isUsernameUnique(String username) {
+		User user = UserDao.findByUsername(username);
+		if (user == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	public boolean isEmailUnique(String email) {
+		User user = UserDao.findByEmail(email);
+		if (user == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
 	public User login(String username, String password) {
 		User user = UserDao.findByUsername(username);
 		if (user.getPassword() == password) {
