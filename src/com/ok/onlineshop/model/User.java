@@ -3,15 +3,12 @@ package com.ok.onlineshop.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,25 +16,30 @@ import javax.persistence.Table;
 @Table(name = "USERS")
 public class User implements Serializable {
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long				serialVersionUID	= 1L;
 	@SequenceGenerator(name = "USER_SEQ_GEN", sequenceName = "USER_SEQ",
 			initialValue = 1)
 	@Id
 	@GeneratedValue(generator = "USER_SEQ_GEN")
 	@Column(name = "USERID", unique = true, nullable = false)
-	private BigDecimal				userid;
+	private BigDecimal							userid;
 	@Column(name = "USERNAME", unique = true, nullable = false)
-	private String						username;
+	private String									username;
 	@Column(name = "PASS", nullable = false)
-	private String						password;
+	private String									password;
 	@Column(name = "EMAIL", unique = true, nullable = false)
-	private String						email;
+	private String									email;
 	@Column(name = "REGISTRATION_DATE")
-	private Date							registrationDate;
-	transient private boolean	status;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "ACCOUNT_ID")
-	private Account						accountInfo;
+	private Date										registrationDate;
+	transient private boolean				status;
+	transient private List<Payment>	payMethod;
+	transient private List<Address>	shipping;
+
+	public boolean validUser() {
+		boolean toRet = true;
+		// validate address fields
+		return toRet;
+	}
 
 	public BigDecimal getUserid() {
 		return this.userid;
@@ -87,20 +89,29 @@ public class User implements Serializable {
 		this.registrationDate = registrationDate;
 	}
 
-	public Account getAccountInfo() {
-		return this.accountInfo;
+	public List<Payment> getPayMethod() {
+		return this.payMethod;
 	}
 
-	public void setAccountInfo(Account accountInfo) {
-		this.accountInfo = accountInfo;
+	public void setPayMethod(List<Payment> payMethod) {
+		this.payMethod = payMethod;
+	}
+
+	public List<Address> getShipping() {
+		return this.shipping;
+	}
+
+	public void setShipping(List<Address> shipping) {
+		this.shipping = shipping;
 	}
 
 	@Override
 	public String toString() {
 		return "User [userid=" + this.userid + ", username=" + this.username
 				+ ", password=" + this.password + ", email=" + this.email
-				+ ", registrationDate=" + this.registrationDate + ", accountId="
-				+ this.accountInfo.getAccountId().toString() + "]";
+				+ ", registrationDate=" + this.registrationDate + ", status="
+				+ this.status + ", payMethod=" + this.payMethod + ", shipping="
+				+ this.shipping + "]";
 	}
 
 }

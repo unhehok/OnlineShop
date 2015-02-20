@@ -33,26 +33,6 @@ public abstract class GenericDao {
 		}
 	}
 
-	protected static void merge(Object entity) {
-		Session session = null;
-		Transaction tx = null;
-		try {
-			session = HibernateUtil.openSession();
-			tx = session.beginTransaction();
-			session.merge(entity);
-			tx.commit();
-		}
-		catch (RuntimeException e) {
-			tx.rollback();
-			e.printStackTrace();
-		}
-		finally {
-			if (session != null) {
-				session.close();
-			}
-		}
-	}
-
 	protected static void delete(Object entity) {
 		Session session = null;
 		Transaction tx = null;
@@ -96,14 +76,14 @@ public abstract class GenericDao {
 
 	}
 
-	protected static BigDecimal findOne(String query) {
+	protected static BigDecimal findOne(String sql) {
 		Session session = null;
 		Transaction tx = null;
 		BigDecimal id = null;
 		try {
 			session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
-			SQLQuery q = session.createSQLQuery(query);
+			SQLQuery q = session.createSQLQuery(sql);
 			id = (BigDecimal) q.uniqueResult();
 
 			tx.commit();
@@ -120,10 +100,10 @@ public abstract class GenericDao {
 		return id;
 	}
 
-	protected static <T> List<T> findAll(Class cl) {
+	protected static <Object> List<Object> findAll(Class<?> cl) {
 		Session session = null;
 		Transaction tx = null;
-		List<T> obj = new ArrayList<T>();
+		List<Object> obj = new ArrayList<Object>();
 		try {
 			session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
@@ -143,14 +123,14 @@ public abstract class GenericDao {
 		return obj;
 	}
 
-	protected static <T> List<T> findList(String query) {
+	protected static <Object> List<Object> findList(String sql) {
 		Session session = null;
 		Transaction tx = null;
-		List<T> obj = new ArrayList<T>();
+		List<Object> obj = new ArrayList<Object>();
 		try {
 			session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
-			obj = session.createQuery(query).list();
+			obj = session.createSQLQuery(sql).list();
 			tx.commit();
 		}
 		catch (RuntimeException e) {

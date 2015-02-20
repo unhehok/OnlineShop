@@ -20,7 +20,7 @@ public class UserDao extends GenericDao {
 	}
 
 	public static void updateUser(User entity) {
-		GenericDao.merge(entity);
+		GenericDao.save(entity);
 	}
 
 	public static void deleteUser(User entity) {

@@ -34,8 +34,8 @@ public class Address implements Serializable {
 	@Column(name = "ZIP", nullable = false)
 	private int								zip;
 	@ManyToOne
-	@JoinColumn(name = "ADDRESS_ACCOUNT_ID", referencedColumnName = "ACCOUNT_ID")
-	private Account						userAccount;
+	@JoinColumn(name = "USERID")
+	private User							userAccount;
 
 	public boolean validAddress() {
 		boolean toRet = true;
@@ -99,11 +99,11 @@ public class Address implements Serializable {
 		this.zip = zip;
 	}
 
-	public Account getUserAccount() {
+	public User getUser() {
 		return this.userAccount;
 	}
 
-	public void setUserAccount(Account userAccount) {
+	public void setUser(User userAccount) {
 		this.userAccount = userAccount;
 	}
 

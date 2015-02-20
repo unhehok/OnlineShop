@@ -29,8 +29,8 @@ public class Payment implements Serializable {
 	@Column(name = "EXP", nullable = false)
 	private int								expiration;
 	@ManyToOne
-	@JoinColumn(name = "PAY_ACCOUNT_ID", referencedColumnName = "ACCOUNT_ID")
-	private Account						userAccount;
+	@JoinColumn(name = "USERID")
+	private User							userAccount;
 	@OneToOne
 	@JoinColumn(name = "ADDRESS_ID")
 	private Address						billing;
@@ -75,16 +75,19 @@ public class Payment implements Serializable {
 		this.billing = billing;
 	}
 
-	public Account getUserAccount() {
+	public User getUser() {
 		return this.userAccount;
 	}
 
-	public void setUserAccount(Account user) {
-		this.userAccount = user;
+	public void setUser(User userAccount) {
+		this.userAccount = userAccount;
 	}
 
 	public boolean validPayment() {
 		boolean toRet = true;
+		if (this.userAccount == null) {
+			toRet = false;
+		}
 		// if ((StringUtils.countMatches(this.creditName, " ") != 1)) {
 		// toRet = false;
 		// }

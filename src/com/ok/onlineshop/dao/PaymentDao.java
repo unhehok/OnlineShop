@@ -13,23 +13,17 @@ public class PaymentDao extends GenericDao {
 		payment.setCreditNum(creditNum);
 		payment.setExpiration(expiration);
 		payment.setBilling(billing);
-		if (user.isStatus()) {
-			payment.setUserAccount(user.getAccountInfo());
-		}
-		else {
-			payment.setUserAccount(null);
-		}
+		payment.setUser(user);
 		if (payment.validPayment()) {
 			GenericDao.save(payment);
+			return payment;
 		}
-		return payment;
+		else {
+			return null;
+		}
 	}
 
-	// public static Payment setUserForPayment(Payment payment, User user) {
-	// Account userAccount = user.getAccountInfo();
-	// Account updatedAccount = AccountDao.addPayToAccount(userAccount, payment);
-	// Object[] payments = updatedAccount.getPayMethod().toArray();
-	// Payment payWithUser = (Payment) payments[payments.length - 1];
-	// return payWithUser;
-	// }
+	public static void updatePayment(Payment entity) {
+		GenericDao.save(entity);
+	}
 }

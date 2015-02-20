@@ -1,10 +1,10 @@
 package com.ok.onlineshop.manager;
 
-import com.ok.onlineshop.dao.AccountDao;
+import java.math.BigDecimal;
+
 import com.ok.onlineshop.dao.AddressDao;
 import com.ok.onlineshop.dao.PaymentDao;
 import com.ok.onlineshop.dao.UserDao;
-import com.ok.onlineshop.model.Account;
 import com.ok.onlineshop.model.Address;
 import com.ok.onlineshop.model.Payment;
 import com.ok.onlineshop.model.User;
@@ -15,48 +15,43 @@ public class UserManager {
 	// newUser adds a new user to DB and returns a signed in User object
 	public User newUser(String username, String password, String email) {
 		User user = UserDao.addUser(username, password, email);
-		user.setStatus(true);
-		Account account = AccountDao.addAccount(user);
-		return account.getUser();
-	}
-
-	public boolean isUsernameUnique(String username) {
-		User user = UserDao.findByUsername(username);
-		if (user == null) {
-			return false;
+		if (this.validUser(user)) {
+			return user;
 		}
 		else {
-			return true;
+			return null;
 		}
 	}
 
-	public boolean isEmailUnique(String email) {
-		User user = UserDao.findByEmail(email);
-		if (user == null) {
+	// username and email must be unique
+	public boolean validUser(User user) {
+		if (UserDao.findByUsername(user.getUsername()) != null) {
 			return false;
 		}
-		else {
-			return true;
+		if (UserDao.findByEmail(user.getEmail()) != null) {
+			return false;
 		}
+		return true;
 	}
 
 	public User login(String username, String password) {
 		User user = UserDao.findByUsername(username);
 		if (user.getPassword() == password) {
-			user.setStatus(true);
+			return user;
 		}
 		else {
-			user.setStatus(false);
+			return null;
 		}
-		return user;
 	}
 
+	// this needs some fixing; either flag for logging in/out or null if logged out
 	public User logout(String username) {
 		User user = UserDao.findByUsername(username);
 		user.setStatus(false);
 		return user;
 	}
 
+	// returns username and password
 	public String forgotUser(String email) {
 		String toRet;
 		User user = UserDao.findByEmail(email);
@@ -68,11 +63,15 @@ public class UserManager {
 					"Your Username: " + user.getUsername() + "\n" + "Your Password: "
 							+ user.getPassword();
 		}
-		System.out.println(toRet);
 		return toRet;
 	}
 
-	// newPayment also creates a new billing Address; mapped to user if online
+	public User findUserPay(User user) {
+		BigDecimal userid = user.getUserid();
+		return null;
+	}
+
+	// newPayment also creates a new billing Address as well
 	public Payment newPayment(String creditName, long creditNum, int expiration,
 			String recipient, String street1, String street2, String city,
 			String state, int zip, User user) {
@@ -91,13 +90,5 @@ public class UserManager {
 				AddressDao.addAddress(recipient, street1, street2, city, state, zip,
 						user);
 		return address;
-	}
-
-	public Account addShipping(Account account, Address shipping) {
-		return AccountDao.addShippingToAccount(account, shipping);
-	}
-
-	public Account addPayment(Account account, Payment payment) {
-		return AccountDao.addPayToAccount(account, payment);
 	}
 }

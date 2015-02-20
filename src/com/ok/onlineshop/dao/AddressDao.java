@@ -14,24 +14,17 @@ public class AddressDao extends GenericDao {
 		address.setCity(city);
 		address.setState(state);
 		address.setZip(zip);
-		if (user.isStatus()) {
-			address.setUserAccount(user.getAccountInfo());
-		}
-		else {
-			address.setUserAccount(null);
-		}
 		if (address.validAddress()) {
 			GenericDao.save(address);
+			return address;
 		}
-		return address;
+		else {
+			return null;
+		}
+
 	}
 
-	// public static Address setUserForAddress(Address address, User user) {
-	// Account userAccount = user.getAccountInfo();
-	// Account updatedAccount =
-	// AccountDao.addShippingToAccount(userAccount, address);
-	// Object[] addresses = updatedAccount.getShipping().toArray();
-	// Address addWithUser = (Address) addresses[addresses.length - 1];
-	// return addWithUser;
-	// }
+	public static void updateAddress(Address entity) {
+		GenericDao.save(entity);
+	}
 }
