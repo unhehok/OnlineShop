@@ -27,7 +27,7 @@ public class Payment implements Serializable {
 	@Column(name = "CREDIT_NUM", nullable = false)
 	private long							creditNum;
 	@Column(name = "EXP", nullable = false)
-	private int								expiration;
+	private short							expiration;
 	@ManyToOne
 	@JoinColumn(name = "USERID")
 	private User							userAccount;
@@ -59,11 +59,11 @@ public class Payment implements Serializable {
 		this.creditNum = creditNum;
 	}
 
-	public int getExpiration() {
+	public short getExpiration() {
 		return this.expiration;
 	}
 
-	public void setExpiration(int expiration) {
+	public void setExpiration(short expiration) {
 		this.expiration = expiration;
 	}
 

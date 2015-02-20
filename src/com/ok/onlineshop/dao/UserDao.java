@@ -33,23 +33,28 @@ public class UserDao extends GenericDao {
 	}
 
 	public static List<User> findAllUsers() {
-		List<User> allUsers = GenericDao.findAll(User.class);
-		return allUsers;
+		List<User> allIds = GenericDao.findAll(User.class);
+		// System.out.println(allIds);
+		// System.out.println();
+		// List<User> allUsers = new ArrayList<User>();
+		// for (User id : allIds) {
+		// User user = (User) GenericDao.findById(User.class, id.getUserid());
+		// allUsers.add(user);
+		// }
+		return allIds;
 	}
 
-	public static User findByEmail(String email) {
+	public static BigDecimal findByEmail(String email) {
 		String sql = "SELECT USERID FROM USERS WHERE EMAIL LIKE '" + email + "'";
 		BigDecimal userid = GenericDao.findOne(sql);
-		User user = (User) GenericDao.findById(User.class, userid);
-		return user;
+		return userid;
 	}
 
-	public static User findByUsername(String username) {
+	public static BigDecimal findByUsername(String username) {
 		String sql =
 				"SELECT USERID FROM USERS WHERE USERNAME LIKE '" + username + "'";
 		BigDecimal userid = GenericDao.findOne(sql);
-		User user = (User) GenericDao.findById(User.class, userid);
-		return user;
+		return userid;
 	}
 
 }

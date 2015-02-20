@@ -85,7 +85,6 @@ public abstract class GenericDao {
 			tx = session.beginTransaction();
 			SQLQuery q = session.createSQLQuery(sql);
 			id = (BigDecimal) q.uniqueResult();
-
 			tx.commit();
 		}
 		catch (RuntimeException e) {
@@ -100,10 +99,10 @@ public abstract class GenericDao {
 		return id;
 	}
 
-	protected static <Object> List<Object> findAll(Class<?> cl) {
+	protected static <T> List<T> findAll(Class cl) {
 		Session session = null;
 		Transaction tx = null;
-		List<Object> obj = new ArrayList<Object>();
+		List<T> obj = new ArrayList<T>();
 		try {
 			session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
@@ -123,14 +122,14 @@ public abstract class GenericDao {
 		return obj;
 	}
 
-	protected static <Object> List<Object> findList(String sql) {
+	protected static <T> List<T> findList(String hql) {
 		Session session = null;
 		Transaction tx = null;
-		List<Object> obj = new ArrayList<Object>();
+		List<T> obj = new ArrayList<T>();
 		try {
 			session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
-			obj = session.createSQLQuery(sql).list();
+			obj = session.createQuery(hql).list();
 			tx.commit();
 		}
 		catch (RuntimeException e) {
