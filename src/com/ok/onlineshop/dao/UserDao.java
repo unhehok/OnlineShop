@@ -4,9 +4,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.ok.onlineshop.model.User;
 
 public class UserDao extends GenericDao {
+
+	public UserDao(SessionFactory sessionFactory) {
+		super(sessionFactory);
+	}
 
 	public static User addUser(String username, String password, String email) {
 		User user = new User();

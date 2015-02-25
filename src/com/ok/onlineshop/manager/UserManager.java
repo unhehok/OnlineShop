@@ -16,7 +16,7 @@ public class UserManager {
 	// newUser adds a new user to DB and returns a signed in User object
 	public User newUser(String username, String password, String email) {
 		if ((this.invalidUsername(username) == null)
-				|| (this.invalidEmail(email) == null)) {
+				&& (this.invalidEmail(email) == null)) {
 			User user = UserDao.addUser(username, password, email);
 			return user;
 		}

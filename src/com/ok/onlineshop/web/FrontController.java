@@ -1,7 +1,6 @@
 package com.ok.onlineshop.web;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,22 +12,22 @@ import com.ok.onlineshop.model.User;
 @Controller
 public class FrontController {
 
-	@RequestMapping("/index")
-	public ModelAndView index(HttpServletRequest request,
-			HttpServletResponse response) {
-		// HttpSession session = request.getSession(false);
-		// if (session == null) {
-		// session = request.getSession();
-		// return new ModelAndView("index");
-		// }
-		// else {
-		// User user = (User) session.getAttribute("user");
-		// ModelAndView model = new ModelAndView("index");
-		// model.addObject("message", "Welcome " + user.getUsername() + "!");
-		// return model;
-		// }
-		return new ModelAndView("index");
-	}
+	// @RequestMapping("/index")
+	// public ModelAndView index(HttpServletRequest request,
+	// HttpServletResponse response) {
+	// // HttpSession session = request.getSession(false);
+	// // if (session == null) {
+	// // session = request.getSession();
+	// // return new ModelAndView("index");
+	// // }
+	// // else {
+	// // User user = (User) session.getAttribute("user");
+	// // ModelAndView model = new ModelAndView("index");
+	// // model.addObject("message", "Welcome " + user.getUsername() + "!");
+	// // return model;
+	// // }
+	// return new ModelAndView("index");
+	// }
 
 	// @RequestMapping("/login.do")
 	// public ModelAndView login(HttpServletRequest request,
@@ -41,25 +40,20 @@ public class FrontController {
 	// }
 
 	@RequestMapping("/newuser")
-	public ModelAndView newUser() {
-		return new ModelAndView("newuser");
-	}
-
-	@RequestMapping("/newuser.do")
-	public ModelAndView newUser(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView newUser(HttpServletRequest request) {
 		String newEmail = request.getParameter("newEmail");
 		String newUsername = request.getParameter("newUsername");
 		String newPassword = request.getParameter("newPassword");
+		System.out.println("processing new user");
 		UserManager um = new UserManager();
 		User newUser = um.newUser(newUsername, newPassword, newEmail);
-		// if (newUser == null) {
-		// String errorMsg = um.invalidUsername(newUsername);
-		// if (errorMsg == null) {
-		// errorMsg = um.invalidEmail(newEmail);
-		// }
-		// return new ModelAndView("newuser", "errorMsg", errorMsg);
-		// }
+		if (newUser == null) {
+			String errorMsg = um.invalidUsername(newUsername);
+			if (errorMsg == null) {
+				errorMsg = um.invalidEmail(newEmail);
+			}
+			return new ModelAndView("error_newuser", "errorMsg", errorMsg);
+		}
 		ModelAndView model = new ModelAndView("home");
 		model.addObject("user", newUser);
 		return model;
