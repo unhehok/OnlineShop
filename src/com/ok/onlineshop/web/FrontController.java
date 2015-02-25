@@ -2,7 +2,6 @@ package com.ok.onlineshop.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,17 +16,18 @@ public class FrontController {
 	@RequestMapping("/index")
 	public ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response) {
-		HttpSession session = request.getSession(false);
-		if (session == null) {
-			session = request.getSession();
-			return new ModelAndView("index");
-		}
-		else {
-			User user = (User) session.getAttribute("user");
-			ModelAndView model = new ModelAndView("index");
-			model.addObject("message", "Welcome " + user.getUsername() + "!");
-			return model;
-		}
+		// HttpSession session = request.getSession(false);
+		// if (session == null) {
+		// session = request.getSession();
+		// return new ModelAndView("index");
+		// }
+		// else {
+		// User user = (User) session.getAttribute("user");
+		// ModelAndView model = new ModelAndView("index");
+		// model.addObject("message", "Welcome " + user.getUsername() + "!");
+		// return model;
+		// }
+		return new ModelAndView("index");
 	}
 
 	// @RequestMapping("/login.do")
@@ -52,17 +52,22 @@ public class FrontController {
 		String newUsername = request.getParameter("newUsername");
 		String newPassword = request.getParameter("newPassword");
 		UserManager um = new UserManager();
-		if (!um.isUsernameUnique(newUsername)) {
-			String errorMsg = newUsername + " already exists.";
-			return new ModelAndView("newuser", "errorMsg", errorMsg);
-		}
-		if (!um.isEmailUnique(newEmail)) {
-			String errorMsg = newEmail + " already exists.";
-			return new ModelAndView("newuser", "errorMsg", errorMsg);
-		}
-		User user = um.newUser(newUsername, newPassword, newEmail);
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
-		return new ModelAndView("index");
+		User newUser = um.newUser(newUsername, newPassword, newEmail);
+		// if (newUser == null) {
+		// String errorMsg = um.invalidUsername(newUsername);
+		// if (errorMsg == null) {
+		// errorMsg = um.invalidEmail(newEmail);
+		// }
+		// return new ModelAndView("newuser", "errorMsg", errorMsg);
+		// }
+		ModelAndView model = new ModelAndView("home");
+		model.addObject("user", newUser);
+		return model;
 	}
+
+	// @RequestMapping("/home")
+	// public ModelAndView home(HttpServletRequest request,
+	// HttpServletResponse response) {
+	//
+	// }
 }

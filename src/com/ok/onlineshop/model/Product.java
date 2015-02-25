@@ -10,10 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "PRODUCTS")
 public class Product implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
@@ -27,8 +25,7 @@ public class Product implements Serializable {
 	@Column(name = "PRODUCT_NAME", nullable = false)
 	private String						productName;
 	@ManyToOne
-	@JoinColumn(name = "PROD_CAT_ID", referencedColumnName = "CATEGORY_ID",
-	nullable = false)
+	@JoinColumn(name = "CATEGORY_ID", nullable = false)
 	private Category					category;
 	@Id
 	@Column(name = "VENDOR", nullable = false)
@@ -92,6 +89,14 @@ public class Product implements Serializable {
 
 	public static long getSerialversionuid() {
 		return Product.serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + this.productId + ", productName="
+				+ this.productName + ", category=" + this.category + ", vendor="
+				+ this.vendor + ", unitPrice=" + this.unitPrice + ", description="
+				+ this.description + "]";
 	}
 
 }

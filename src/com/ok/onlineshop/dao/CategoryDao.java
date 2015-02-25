@@ -35,8 +35,8 @@ public class CategoryDao extends GenericDao {
 	}
 
 	public static List<Category> findAllParentCats() {
-		String sql = "SELECT * FROM CATEGORIES cat WHERE cat.PARENT_CAT_ID IS NULL";
-		List<Category> parentCats = GenericDao.findList(sql);
+		String hql = "from CATEGORIES cat where cat.parentCategory is null";
+		List<Category> parentCats = GenericDao.findList(hql);
 		return parentCats;
 	}
 
@@ -45,9 +45,8 @@ public class CategoryDao extends GenericDao {
 				GenericDao
 				.findOne("SELECT CATEGORY_ID FROM CATEGORIES WHERE CATEGORY_NAME LIKE '"
 						+ parentCategory + "'");
-		String sql =
-				"SELECT * FROM CATEGORIES WHERE PARENT_CAT_ID LIKE '" + parentId + "'";
-		List<Category> subCats = GenericDao.findList(sql);
+		String hql = "from CATEGORIES where parentCategory='" + parentId + "'";
+		List<Category> subCats = GenericDao.findList(hql);
 		return subCats;
 	}
 

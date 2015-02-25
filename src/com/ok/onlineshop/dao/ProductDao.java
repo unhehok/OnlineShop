@@ -1,6 +1,7 @@
 package com.ok.onlineshop.dao;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.ok.onlineshop.model.Category;
 import com.ok.onlineshop.model.Product;
@@ -16,7 +17,6 @@ public class ProductDao extends GenericDao {
 		product.setUnitPrice(unitPrice);
 		product.setDescription(description);
 		GenericDao.save(product);
-		CategoryDao.updateCat(category);
 		return product;
 	}
 
@@ -31,5 +31,16 @@ public class ProductDao extends GenericDao {
 	public static Product findById(BigDecimal productId) {
 		Product product = (Product) GenericDao.findById(Product.class, productId);
 		return product;
+	}
+
+	public static List<Product> findAllProducts() {
+		List<Product> allProds = GenericDao.findAll(Product.class);
+		return allProds;
+	}
+
+	public static List<Product> findByCat(BigDecimal categoryId) {
+		String hql = "from Product prod where prod.category=" + categoryId;
+		List<Product> prodsByCat = GenericDao.findList(hql);
+		return prodsByCat;
 	}
 }

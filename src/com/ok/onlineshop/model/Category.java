@@ -13,13 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
-@Entity
-@Table(name = "CATEGORIES")
+@Entity(name = "CATEGORIES")
 public class Category implements Serializable {
 
 	private static final long				serialVersionUID	= 1L;
@@ -36,7 +31,6 @@ public class Category implements Serializable {
 	private Category								parentCategory;
 	transient private Set<Category>	subCategories;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-	@Cascade({ CascadeType.SAVE_UPDATE })
 	transient private Set<Product>	catProducts;
 
 	public BigDecimal getCategoryId() {
